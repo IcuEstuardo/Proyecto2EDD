@@ -9,10 +9,10 @@ package Principal;
  *
  * @author Estuardo
  */
-public class main {
-    
-    public static void main(String[] args) {
-        System.out.println("Hola mundo");
-    }
-    
-}
+//public class main {
+//    
+//    public static void main(String[] args) {
+//        System.out.println("Hola mundo");
+//    }
+//    
+//}

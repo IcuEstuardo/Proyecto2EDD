@@ -8,29 +8,44 @@ import java.util.ArrayList;
  */
 public class Vertice {
 
-    private String nombre;
-    private boolean estado;
-
-    private Vertice antecesor;
     private ArrayList<Adyacente> adyacentes;
-
+    private Vertice antecesor;
+    private String nombre;
+    private int distancia;
+    private boolean estado;
+    
+    //:::::::::::::::::::::::::::::::::::::::::::::::::: CONSTRUCTORES ::::::::::::::::::::::::::::::::::::::::::::::::::::
+    public Vertice(String nom, ArrayList<Adyacente> ver)
+    {
+        this.nombre = nom;
+        this.distancia = -1;
+        this.estado = false;
+        
+        this.antecesor = null;
+        this.adyacentes = ver;
+    }
+    
     public Vertice(String nom)
     {
         this.nombre = nom;
+        this.distancia = -1;
         this.estado = false;
-
+        
         this.antecesor = null;
-        this.adyacentes = new ArrayList<>();
+        this.adyacentes = null;
     }
 
+    //:::::::::::::::::::::::::::::::::::::::::::: OPERACIONES ADYACENTES ::::::::::::::::::::::::::::::::::::::::::::::::::::
+    
     public void agregarAdyacente(Vertice nuevo)
     {
+        if (this.adyacentes == null)
+            this.adyacentes = new ArrayList<>();
+        
         if (this.BusquedaAdyacente(nuevo.getNombre()) == null) {
             this.adyacentes.add(new Adyacente(nuevo));
         }
     }
-    
-    //::::::::::::::::::::::::::::::::::::::::::::::::::: Funciones Opcionales :::::::::::::::::::::::::::::::::::::::::::::::::::
     
     public Adyacente BusquedaAdyacente(String nombre)
     {
@@ -39,6 +54,8 @@ public class Vertice {
             if (item.getNodo().getNombre().equals(nombre))
                 return item;
         }
+        
+        
 
         return null;
     }
@@ -55,7 +72,8 @@ public class Vertice {
     }
     
     
-    //::::::::::::::::::::::::::::::::::::::::::::::::::::: Encapsulado :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+    //::::::::::::::::::::::::::::::::::::::::::::::::::::: ENCAPSULADO :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+    
     public String getNombre() {
         return nombre;
     }
@@ -75,6 +93,19 @@ public class Vertice {
     public void setAntecesor(Vertice antecesor) {
         this.antecesor = antecesor;
     }
+
+    public int getDistancia() {
+        return distancia;
+    }
+
+    public void setDistancia(int distancia) {
+        this.distancia = distancia;
+    }
+
+    public ArrayList<Adyacente> getAdyacentes() {
+        return adyacentes;
+    }
+
 
 
 }

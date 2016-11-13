@@ -17,6 +17,11 @@ public class arbolHeap {
         this.Cola = null;
     }
 
+    public boolean arbolVacio()
+    {
+        return this.Raiz == null;
+    }
+    
     
     public void Insercion(String nom, int id)
     {

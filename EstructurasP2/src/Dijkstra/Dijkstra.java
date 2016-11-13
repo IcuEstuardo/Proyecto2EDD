@@ -1,5 +1,6 @@
 package Dijkstra;
 
+import Heap.arbolHeap;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -12,7 +13,59 @@ import java.util.ArrayList;
 public class Dijkstra {
 
     private ArrayList<Vertice> ListaVertices;
+    private arbolHeap colaPrioridad;
 
+    public Dijkstra()
+    {
+        this.ListaVertices = null;
+        this.colaPrioridad = null;
+    }
+    
+    private void Inicializar()
+    {
+        for (Vertice item: this.ListaVertices) 
+            item = new Vertice(item.getNombre(), item.getAdyacentes());
+    }
+    
+    
+    public void EncontrarRutaMinima(String nOrigen, String nDestino)
+    {
+        try {
+            
+            Vertice origen = this.BusquedaVertice(nOrigen);
+            
+            if (origen != null) {
+                this.Inicializar();
+                origen.setDistancia(0);
+                
+                this.colaPrioridad.Insercion(origen.getNombre(), 0);
+                
+                while(!this.colaPrioridad.arbolVacio())
+                {
+                    Vertice actual = this.BusquedaVertice(this.colaPrioridad.Eliminacion().getNombre());
+                    
+                    if (actual.isEstado() == true)
+                        continue;
+                   
+                    actual.setEstado(true);
+                    
+                    for (Adyacente item: actual.getAdyacentes()) 
+                    {
+                        
+                    }
+                    
+                    
+                }
+                
+            }
+            
+        } catch (Exception e) {
+        }
+    }
+    
+    
+    
+    
     public void AgregarVertices(String ubi)
     {
         this.ListaVertices = new ArrayList<>();
