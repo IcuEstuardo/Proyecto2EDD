@@ -9,9 +9,9 @@ import ArbolB.arbolB;
 public class Adyacente {
     
     private arbolB arbol;
-    private Vertice nodo;
+    private String nodo;
     
-    public Adyacente(Vertice ady)
+    public Adyacente(String ady)
     {
         this.nodo = ady;
         this.arbol = null;
@@ -40,11 +40,11 @@ public class Adyacente {
         this.arbol.Insercion(peso);
     }
 
-    public Vertice getNodo() {
+    public String getNodo() {
         return nodo;
     }
 
-    public void setNodo(Vertice nodo) {
+    public void setNodo(String nodo) {
         this.nodo = nodo;
     }
     

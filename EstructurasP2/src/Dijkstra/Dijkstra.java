@@ -25,16 +25,33 @@ public class Dijkstra {
     {
         for (Vertice item: this.ListaVertices) 
             item = new Vertice(item.getNombre(), item.getAdyacentes());
+        
+        this.colaPrioridad = new arbolHeap();
+    }
+    
+    private void Relajacion(Vertice actual, Vertice adyacente, int peso)
+    {
+        if ((actual.getDistancia() + peso) < adyacente.getDistancia()) 
+        {
+            adyacente.setDistancia(actual.getDistancia() + peso);
+            adyacente.setAntecesor(actual);
+            
+            this.colaPrioridad.Insercion(adyacente.getNombre(), adyacente.getDistancia());
+        }
     }
     
     
-    public void EncontrarRutaMinima(String nOrigen, String nDestino)
+    public void EncontrarRutaMinima(String nOrigen)
     {
         try {
             
             Vertice origen = this.BusquedaVertice(nOrigen);
             
-            if (origen != null) {
+            if (origen != null) 
+            {
+                System.out.println(":::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::");
+                System.out.println("El origen ingresado existe!");
+                
                 this.Inicializar();
                 origen.setDistancia(0);
                 
@@ -51,15 +68,26 @@ public class Dijkstra {
                     
                     for (Adyacente item: actual.getAdyacentes()) 
                     {
+                        String nodo = item.getNodo();
+                        int peso = item.ObtenerPeso();
                         
-                    }
-                    
-                    
+                        Vertice adyacente = this.BusquedaVertice(nodo);
+                        if (adyacente.isEstado() == false) {
+                            this.Relajacion(actual, adyacente, peso);
+                        }
+                        
+                    }   
                 }
                 
+                System.out.println("Distancia desde el vertice: " + origen.getNombre() + " al resto de vertices");
+                for (Vertice item: this.ListaVertices) 
+                {
+                    System.out.printf("Vertice %s , distancia mas corta = %d\n" , item.getNombre() , item.getDistancia() );
+                }
             }
             
         } catch (Exception e) {
+            System.out.println("Error en alguna parte: " + e.toString());
         }
     }
     
@@ -90,7 +118,7 @@ public class Dijkstra {
                     if (this.BusquedaVertice(lineaTxt[1]) == null)
                         this.ListaVertices.add(new Vertice(lineaTxt[1]));
                     
-                    this.BusquedaVertice(lineaTxt[0]).agregarAdyacente(this.BusquedaVertice(lineaTxt[1]));
+                    this.BusquedaVertice(lineaTxt[0]).agregarAdyacente(lineaTxt[1]);
 
                 }else{
                     break;

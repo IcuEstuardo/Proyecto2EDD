@@ -13,6 +13,8 @@ public class main {
         algoritmo.AgregarPesoAdyacentes("entradaPesos.txt");
         
         algoritmo.MostrarVertices();
+        
+        algoritmo.EncontrarRutaMinima("A");
 
     }
     

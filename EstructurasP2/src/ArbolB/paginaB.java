@@ -141,11 +141,11 @@ public class paginaB {
             claveB aux = this.claveIni;
             while (aux != null) {
                 suma += aux.getClave();
-                System.out.print(aux.getClave() + " ");
+//                System.out.print(aux.getClave() + " ");
                 aux = aux.getSiguiente();
             }
             
-            System.out.println("Operacion: " + suma + "/" + this.ContadorClave);
+//            System.out.println("Operacion: " + suma + "/" + this.ContadorClave);
             return suma / this.ContadorClave;
         }
         return -1;

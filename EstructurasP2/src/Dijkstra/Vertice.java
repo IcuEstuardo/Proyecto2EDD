@@ -15,10 +15,11 @@ public class Vertice {
     private boolean estado;
     
     //:::::::::::::::::::::::::::::::::::::::::::::::::: CONSTRUCTORES ::::::::::::::::::::::::::::::::::::::::::::::::::::
+    
     public Vertice(String nom, ArrayList<Adyacente> ver)
     {
         this.nombre = nom;
-        this.distancia = -1;
+        this.distancia = Integer.MAX_VALUE;
         this.estado = false;
         
         this.antecesor = null;
@@ -28,7 +29,7 @@ public class Vertice {
     public Vertice(String nom)
     {
         this.nombre = nom;
-        this.distancia = -1;
+        this.distancia = Integer.MAX_VALUE;
         this.estado = false;
         
         this.antecesor = null;
@@ -37,12 +38,12 @@ public class Vertice {
 
     //:::::::::::::::::::::::::::::::::::::::::::: OPERACIONES ADYACENTES ::::::::::::::::::::::::::::::::::::::::::::::::::::
     
-    public void agregarAdyacente(Vertice nuevo)
+    public void agregarAdyacente(String nuevo)
     {
         if (this.adyacentes == null)
             this.adyacentes = new ArrayList<>();
         
-        if (this.BusquedaAdyacente(nuevo.getNombre()) == null) {
+        if (this.BusquedaAdyacente(nuevo) == null) {
             this.adyacentes.add(new Adyacente(nuevo));
         }
     }
@@ -51,7 +52,7 @@ public class Vertice {
     {
         for (Adyacente item: this.adyacentes)
         {
-            if (item.getNodo().getNombre().equals(nombre))
+            if (item.getNodo().equals(nombre))
                 return item;
         }
         
@@ -65,7 +66,7 @@ public class Vertice {
         System.out.print(this.getNombre() + ": ");
         
         this.adyacentes.forEach((nodo) -> {
-            System.out.print(nodo.getNodo().getNombre() + "|" + nodo.ObtenerPeso() + " || ");
+            System.out.print(nodo.getNodo() + "|" + nodo.ObtenerPeso() + " || ");
         });
         
         System.out.println("");
