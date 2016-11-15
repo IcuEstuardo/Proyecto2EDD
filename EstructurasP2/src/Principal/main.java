@@ -1,18 +1,23 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Principal;
+
+import TablaHash.HashUsuarios;
 
 /**
  *
  * @author Estuardo
  */
-//public class main {
-//    
-//    public static void main(String[] args) {
-//        System.out.println("Hola mundo");
-//    }
-//    
-//}
+public class main {
+    
+    
+    public static void main(String[] args) {
+    
+        HashUsuarios tabla = new HashUsuarios();
+        
+        double cont = 4;
+        double longitud = 7;
+        
+        System.out.println(cont/longitud);
+        
+    }
+        
+}
