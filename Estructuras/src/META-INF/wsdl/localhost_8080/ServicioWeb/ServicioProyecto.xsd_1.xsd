@@ -1,0 +1,291 @@
+<?xml version='1.0' encoding='UTF-8'?><!-- Published by JAX-WS RI at http://jax-ws.dev.java.net. RI's version is JAX-WS RI 2.2-hudson-740-. --><xs:schema xmlns:tns="http://Implementacion/" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0" targetNamespace="http://Implementacion/">
+
+<xs:element name="AgregarTiempo" type="tns:AgregarTiempo" />
+
+<xs:element name="AgregarTiempoResponse" type="tns:AgregarTiempoResponse" />
+
+<xs:element name="BusquedaUsuario" type="tns:BusquedaUsuario" />
+
+<xs:element name="BusquedaUsuarioResponse" type="tns:BusquedaUsuarioResponse" />
+
+<xs:element name="CrearHistorial" type="tns:CrearHistorial" />
+
+<xs:element name="CrearHistorialResponse" type="tns:CrearHistorialResponse" />
+
+<xs:element name="EliminacionUsuario" type="tns:EliminacionUsuario" />
+
+<xs:element name="EliminacionUsuarioResponse" type="tns:EliminacionUsuarioResponse" />
+
+<xs:element name="EliminarArbol" type="tns:EliminarArbol" />
+
+<xs:element name="EliminarArbolResponse" type="tns:EliminarArbolResponse" />
+
+<xs:element name="FuncionPrueba" type="tns:FuncionPrueba" />
+
+<xs:element name="FuncionPruebaResponse" type="tns:FuncionPruebaResponse" />
+
+<xs:element name="GraficarEstado" type="tns:GraficarEstado" />
+
+<xs:element name="GraficarEstadoResponse" type="tns:GraficarEstadoResponse" />
+
+<xs:element name="GraficarHistoria" type="tns:GraficarHistoria" />
+
+<xs:element name="GraficarHistoriaResponse" type="tns:GraficarHistoriaResponse" />
+
+<xs:element name="GrafoRutaMinima" type="tns:GrafoRutaMinima" />
+
+<xs:element name="GrafoRutaMinimaResponse" type="tns:GrafoRutaMinimaResponse" />
+
+<xs:element name="ModificacionUsuario" type="tns:ModificacionUsuario" />
+
+<xs:element name="ModificacionUsuarioResponse" type="tns:ModificacionUsuarioResponse" />
+
+<xs:element name="ObtenerHistorial" type="tns:ObtenerHistorial" />
+
+<xs:element name="ObtenerHistorialResponse" type="tns:ObtenerHistorialResponse" />
+
+<xs:element name="RegistroUsuario" type="tns:RegistroUsuario" />
+
+<xs:element name="RegistroUsuarioResponse" type="tns:RegistroUsuarioResponse" />
+
+<xs:element name="ReporteGrafo" type="tns:ReporteGrafo" />
+
+<xs:element name="ReporteGrafoResponse" type="tns:ReporteGrafoResponse" />
+
+<xs:element name="ReporteUsuario" type="tns:ReporteUsuario" />
+
+<xs:element name="ReporteUsuarioResponse" type="tns:ReporteUsuarioResponse" />
+
+<xs:element name="RutasMinimas" type="tns:RutasMinimas" />
+
+<xs:element name="RutasMinimasResponse" type="tns:RutasMinimasResponse" />
+
+<xs:element name="SubirPesos" type="tns:SubirPesos" />
+
+<xs:element name="SubirPesosResponse" type="tns:SubirPesosResponse" />
+
+<xs:element name="SubirVertices" type="tns:SubirVertices" />
+
+<xs:element name="SubirVerticesResponse" type="tns:SubirVerticesResponse" />
+
+<xs:complexType name="CrearHistorial">
+<xs:sequence>
+<xs:element name="username" type="xs:string" minOccurs="0" />
+<xs:element name="origen" type="xs:string" minOccurs="0" />
+<xs:element name="destino" type="xs:string" minOccurs="0" />
+<xs:element name="ubicacion" type="xs:int" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="CrearHistorialResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:boolean" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="SubirPesos">
+<xs:sequence>
+<xs:element name="texto" type="xs:string" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="SubirPesosResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="GraficarHistoria">
+<xs:sequence>
+<xs:element name="username" type="xs:string" minOccurs="0" />
+<xs:element name="codigo" type="xs:int" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="GraficarHistoriaResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="GraficarEstado">
+<xs:sequence>
+<xs:element name="posicion1" type="xs:string" minOccurs="0" />
+<xs:element name="posicion2" type="xs:string" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="GraficarEstadoResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="EliminacionUsuario">
+<xs:sequence>
+<xs:element name="username" type="xs:string" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="EliminacionUsuarioResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="ReporteUsuario">
+<xs:sequence>
+<xs:element name="nombre" type="xs:string" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="ReporteUsuarioResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="AgregarTiempo">
+<xs:sequence>
+<xs:element name="posicion1" type="xs:string" minOccurs="0" />
+<xs:element name="posicion2" type="xs:string" minOccurs="0" />
+<xs:element name="username" type="xs:string" minOccurs="0" />
+<xs:element name="tiempo" type="xs:int" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="AgregarTiempoResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:boolean" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="SubirVertices">
+<xs:sequence>
+<xs:element name="texto" type="xs:string" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="SubirVerticesResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="FuncionPrueba">
+<xs:sequence>
+<xs:element name="nombre" type="xs:string" minOccurs="0" />
+<xs:element name="pass" type="xs:string" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="FuncionPruebaResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="ModificacionUsuario">
+<xs:sequence>
+<xs:element name="username" type="xs:string" minOccurs="0" />
+<xs:element name="password" type="xs:string" minOccurs="0" />
+<xs:element name="correo" type="xs:string" minOccurs="0" />
+<xs:element name="path" type="xs:string" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="ModificacionUsuarioResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:boolean" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="ObtenerHistorial">
+<xs:sequence>
+<xs:element name="nombre" type="xs:string" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="ObtenerHistorialResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="EliminarArbol">
+<xs:sequence>
+<xs:element name="posicion1" type="xs:string" minOccurs="0" />
+<xs:element name="posicion2" type="xs:string" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="EliminarArbolResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:boolean" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="GrafoRutaMinima">
+<xs:sequence>
+<xs:element name="identificador" type="xs:int" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="GrafoRutaMinimaResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="BusquedaUsuario">
+<xs:sequence>
+<xs:element name="username" type="xs:string" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="BusquedaUsuarioResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="RutasMinimas">
+<xs:sequence>
+<xs:element name="posicion1" type="xs:string" minOccurs="0" />
+<xs:element name="posicion2" type="xs:string" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="RutasMinimasResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="ReporteGrafo">
+<xs:sequence>
+<xs:element name="nombre" type="xs:string" minOccurs="0" />
+<xs:element name="ruta" type="xs:boolean" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="ReporteGrafoResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="RegistroUsuario">
+<xs:sequence>
+<xs:element name="username" type="xs:string" minOccurs="0" />
+<xs:element name="password" type="xs:string" minOccurs="0" />
+<xs:element name="correo" type="xs:string" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="RegistroUsuarioResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+</xs:schema>

@@ -1,10 +1,15 @@
 package com.example.estuardo.proyectoapp;
 
+import android.content.Intent;
+import android.os.AsyncTask;
+import android.speech.tts.Voice;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.estuardo.conexion.wsConexion;
@@ -16,11 +21,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private EditText tIuser, tIpass;
     private EditText tRuser, tRpass, tRemai;
     private Button bIngreso, bRegistro;
+    private ProgressBar bProgreso;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        this.bProgreso = (ProgressBar) findViewById(R.id.progressBar);
 
         this.bIngreso = (Button) findViewById(R.id.btnIngreso);
         this.bRegistro = (Button) findViewById(R.id.btnRegistro);
@@ -41,62 +49,82 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.btnIngreso:
                 String param1 = this.tIuser.getText().toString();
                 String param2 = this.tIpass.getText().toString();
-                this.metodoIngreso(param1, param2);
+                new LogearUsuario(param1).execute(param2);
                 break;
             case R.id.btnRegistro:
-                String par1 = this.tRuser.getText().toString();
-                String par2 = this.tRpass.getText().toString();
-                String par3 = this.tRemai.getText().toString();
-                this.metodoRegistro(par1, par2, par3);
+                String parm1 = this.tRuser.getText().toString();
+                String parm2 = this.tRpass.getText().toString();
+                String parm3 = this.tRemai.getText().toString();
+                new AgregarUsuarios().execute(parm1, parm2, parm3);
                 break;
         }
     }
 
-    private void metodoIngreso(String us, String ps)
+
+    private class AgregarUsuarios extends AsyncTask<String, Integer, String>
     {
-        String mensaje;
+        @Override
+        protected String doInBackground(String... params) {
+            return new wsConexion().RegistrarUsuario(params[0].toString(), params[1].toString(), params[2].toString());
+        }
 
-        if (!us.isEmpty() && !ps.isEmpty())
+        @Override
+        protected void onPostExecute(String aVoid) {
+            Toast.makeText(getBaseContext(), aVoid.toString(), Toast.LENGTH_LONG).show();
+            tRuser.setText("");
+            tRpass.setText("");
+            tRemai.setText("");
+        }
+    }
+
+    private class LogearUsuario extends AsyncTask<String, Void, Boolean>
+    {
+        private boolean estado;
+        private String user;
+
+        public LogearUsuario(String user)
         {
-            String resultado = new wsConexion().IngresoUsuario(us, ps);
+            this.estado = false;
+            this.user = user;
+        }
 
-            if (resultado.equals(""))
-                mensaje = "Usuario invalido";
-            else
+        @Override
+        protected Boolean doInBackground(String... params) {
+            String respuesta = new wsConexion().IngresoUsuario(user);
+
+            try {
+                if (!respuesta.equals(""))
+                {
+                    String datos[] = respuesta.split(",");
+                    if (datos[1].equals(params[0]))
+                        this.estado = true;
+                }
+
+            }catch (Exception e)
             {
-                String [] usuario =  resultado.split(",");
-                if (usuario[1].equals(ps))
-                    mensaje = "Contrasena correcta";
-                else
-                    mensaje = "Contrasena incorrecta";
             }
 
-            this.tIpass.setText("");
-            this.tIuser.setText("");
+            return estado;
         }
-        else
-            mensaje = "No ha ingresado datos";
 
-        Toast.makeText(getApplicationContext(), mensaje, Toast.LENGTH_LONG).show();
+        @Override
+        protected void onPostExecute(Boolean aBoolean) {
+            String mensaje;
+            if (this.estado == true)
+            {
+                mensaje = "Usuario y Contrasea correctos";
+                Toast.makeText(getBaseContext(), mensaje, Toast.LENGTH_LONG).show();
 
+                Intent intent = new Intent(getApplicationContext(), Menu.class);
+                intent.putExtra("Username",this.user);
+                startActivity(intent);
+            }
+            else
+            {
+                mensaje = "Usuario y Contrasea incorrectos";
+                Toast.makeText(getBaseContext(), mensaje, Toast.LENGTH_LONG).show();
+            }
+        }
     }
 
-    private void metodoRegistro(String us, String ps, String em)
-    {
-        String mensaje;
-
-        if (!us.isEmpty() && !ps.isEmpty() && !em.isEmpty())
-        {
-            mensaje = new wsConexion().RegistrarUsuario(us, ps, em);
-
-            this.tRuser.setText("");
-            this.tRpass.setText("");
-            this.tRemai.setText("");
-
-        }
-        else
-            mensaje = "No ha ingresado datos";
-
-        Toast.makeText(getApplicationContext(), mensaje, Toast.LENGTH_LONG).show();
-    }
 }
